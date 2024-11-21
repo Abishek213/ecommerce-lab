@@ -11,6 +11,11 @@ deactivate
 <!-- Install requirements -->
 pip install -r requirements.txt
 
+``` shell
+$docker ps
+CONTAINER ID   IMAGE   COMMAND    CREATED    STATUS    PORTS     NAMES
+```
+
 <!-- This command removes all stopped containers, unused networks, dangling images, and unused volumes.
 Ensure you don't need these resources before executing the command. -->
 docker system prune -a --volumes
