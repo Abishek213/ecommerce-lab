@@ -1,9 +1,15 @@
-# ecommerce-lab
+# ecommerce-lab 
 <!-- Create virtual env named ecom -->
-python -m venv ecom 
 
-<!-- Activate ecom -->
-source ecom/bin/activate
+```shell
+python -m venv ecom
+```
+
+<!-- Activate ecom macos-->
+```shell
+$source ecom/bin/activate
+(ecom) bihan@Bihans-MacBook-Pro ecommerce-lab %
+```
 
 <!-- Deactive ecom -->
 deactivate
@@ -11,9 +17,59 @@ deactivate
 <!-- Install requirements -->
 pip install -r requirements.txt
 
-``` shell
+<!-- Check installation -->
+pip show gunicorn 
+pip show flask
+
+
+<!-- Run from terminal -->
+```shell
+$ gunicorn --bind 0.0.0.0:5001 market:app
+```
+
+<!-- Run from terminal with reload -->
+```shell
+$ gunicorn --reload --bind 0.0.0.0:5001 market:app
+```
+
+<!-- Simply run with python -->
+```shell
+$ python market.py # 
+```
+
+$ gunicorn --workers 9 --threads 2 --bind 0.0.0.0:5001 market:app
+$ ps aux | grep gunicorn
+
+<!-- install database -->
+``$ pip install flask-sqlalchemy``
+
+<!-- Create database -->
+```python shell
+>>> from market import app, db
+
+>>> with app.app_context():
+         db.create_all()
+```
+
+<!-- Insert data in database>
+shell
+>>> from market import app, db, Item
+>>> with app.app_context():
+...    new_item = Item(name='Test Product', price=100, barcode='123456789012', description='A test item')
+...    db.session.add(new_item)
+...    db.session.commit()
+...    item = Item.query.first()
+...    print(item.name, item.price)
+... 
+Test Product 100
+```
+
+
+
+<!-- Check Docker -->
+```shell
 $docker ps
-CONTAINER ID   IMAGE   COMMAND    CREATED    STATUS    PORTS     NAMES
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 
 <!-- This command removes all stopped containers, unused networks, dangling images, and unused volumes.
@@ -34,4 +90,9 @@ docker logs -f flask_app_container
 
 <!-- Remove Container -->
 docker rm flask_app_container
+
+
+# References
+1. https://www.youtube.com/watch?v=Qr4QMBUPxWo&t=555s
+2. https://github.com/jimdevops19/codesnippets/tree/main/Flask%20Full%20Series
 
